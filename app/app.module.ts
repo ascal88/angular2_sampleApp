@@ -18,7 +18,9 @@ import { CreateSessionComponent } from './events/event-details/create-session.co
 import { SessionListComponent } from './events/event-details/session-list.component';
 import { CollapsibleWellComponent } from './common/collapsible-well.component';
 import { DurationPipe } from './events/shared/duration.pipe';
-import { ToastrService } from './common/toastr.service';
+import { TOASTR_TOKEN, Toastr} from './common/toastr.service';
+
+declare let toastr: Toastr
 
 @NgModule({
     imports:
@@ -52,7 +54,9 @@ import { ToastrService } from './common/toastr.service';
             useValue: checkDirtyState
         },
         EventListResolver,
-        ToastrService,
+        {
+            provide: TOASTR_TOKEN, useValue: toastr
+        },
         AuthService
     ],
     bootstrap: [EventsAppComponent]
