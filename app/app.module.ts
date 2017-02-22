@@ -18,6 +18,7 @@ import { CreateSessionComponent } from './events/event-details/create-session.co
 import { SessionListComponent } from './events/event-details/session-list.component';
 import { CollapsibleWellComponent } from './common/collapsible-well.component';
 import { DurationPipe } from './events/shared/duration.pipe';
+import { ToastrService } from './common/toastr.service';
 
 @NgModule({
     imports:
@@ -51,6 +52,7 @@ import { DurationPipe } from './events/shared/duration.pipe';
             useValue: checkDirtyState
         },
         EventListResolver,
+        ToastrService,
         AuthService
     ],
     bootstrap: [EventsAppComponent]
