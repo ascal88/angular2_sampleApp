@@ -18,9 +18,12 @@ import { CreateSessionComponent } from './events/event-details/create-session.co
 import { SessionListComponent } from './events/event-details/session-list.component';
 import { CollapsibleWellComponent } from './common/collapsible-well.component';
 import { DurationPipe } from './events/shared/duration.pipe';
-import { TOASTR_TOKEN, Toastr} from './common/toastr.service';
+import { TOASTR_TOKEN, Toastr } from './common/toastr.service';
+import { JQ_TOKEN } from './common/jQuery.service';
+import { SimpleModalComponent } from './common/simple-modal.component';
 
-declare let toastr: Toastr
+declare let toastr: Toastr;
+declare let jQuery: Object;
 
 @NgModule({
     imports:
@@ -29,7 +32,7 @@ declare let toastr: Toastr
         FormsModule,
         ReactiveFormsModule,
         RouterModule.forRoot(appRoutes),
-        
+
     ],
     declarations:
     [
@@ -43,28 +46,32 @@ declare let toastr: Toastr
         SessionListComponent,
         CollapsibleWellComponent,
         DurationPipe,
+        SimpleModalComponent,
         Error404Component
     ],
-    providers: 
+    providers:
     [
-        EventService, 
+        EventService,
         EventRouteActivator,
         {
-            provide: 'canDeactivateCReateEvent', 
+            provide: 'canDeactivateCReateEvent',
             useValue: checkDirtyState
         },
         EventListResolver,
         {
             provide: TOASTR_TOKEN, useValue: toastr
         },
+        {
+            provide: JQ_TOKEN, useValue: jQuery
+        },
         AuthService
     ],
     bootstrap: [EventsAppComponent]
 })
-export class AppModule {}
+export class AppModule { }
 
 function checkDirtyState(createEventComponent: CreateEventComponent): boolean {
-    if(createEventComponent.isDirty)
+    if (createEventComponent.isDirty)
         return window.confirm('You have not saved this event, do you really want to cancel?');
     return true;
 }
