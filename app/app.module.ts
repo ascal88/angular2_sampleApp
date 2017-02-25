@@ -21,6 +21,7 @@ import { DurationPipe } from './events/shared/duration.pipe';
 import { TOASTR_TOKEN, Toastr } from './common/toastr.service';
 import { JQ_TOKEN } from './common/jQuery.service';
 import { SimpleModalComponent } from './common/simple-modal.component';
+import { ModalTriggerDirective } from './common/modal-trigger.directive';
 
 declare let toastr: Toastr;
 declare let jQuery: Object;
@@ -47,6 +48,7 @@ declare let jQuery: Object;
         CollapsibleWellComponent,
         DurationPipe,
         SimpleModalComponent,
+        ModalTriggerDirective,
         Error404Component
     ],
     providers:
