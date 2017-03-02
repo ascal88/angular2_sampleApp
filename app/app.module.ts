@@ -22,6 +22,8 @@ import { TOASTR_TOKEN, Toastr } from './common/toastr.service';
 import { JQ_TOKEN } from './common/jQuery.service';
 import { SimpleModalComponent } from './common/simple-modal.component';
 import { ModalTriggerDirective } from './common/modal-trigger.directive';
+import { UpvoteComponent } from './events/event-details/upvote.component';
+import { VoterService } from './events/event-details/voter.service';
 
 declare let toastr: Toastr;
 declare let jQuery: Object;
@@ -49,6 +51,7 @@ declare let jQuery: Object;
         DurationPipe,
         SimpleModalComponent,
         ModalTriggerDirective,
+        UpvoteComponent,
         Error404Component
     ],
     providers:
@@ -66,7 +69,8 @@ declare let jQuery: Object;
         {
             provide: JQ_TOKEN, useValue: jQuery
         },
-        AuthService
+        AuthService,
+        VoterService
     ],
     bootstrap: [EventsAppComponent]
 })
