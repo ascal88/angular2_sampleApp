@@ -9,7 +9,6 @@ import { EventService } from './events/shared/event.service';
 import { EventDetailsComponent } from './events/event-details/event-detail.component';
 import { CreateEventComponent } from './events/create-event.component';
 import { Error404Component } from './errors/error404.component';
-import { EventRouteActivator } from './events/event-details/event-route-activator.service';
 import { appRoutes } from './router';
 import { EventListResolver } from './events/events-list-resolver.service';
 import { AuthService } from './user/auth.service';
@@ -24,6 +23,9 @@ import { SimpleModalComponent } from './common/simple-modal.component';
 import { ModalTriggerDirective } from './common/modal-trigger.directive';
 import { UpvoteComponent } from './events/event-details/upvote.component';
 import { VoterService } from './events/event-details/voter.service';
+import { HttpModule } from '@angular/http';
+import { EventResolver } from './events/event-resolver.service';
+
 
 declare let toastr: Toastr;
 declare let jQuery: Object;
@@ -35,6 +37,7 @@ declare let jQuery: Object;
         FormsModule,
         ReactiveFormsModule,
         RouterModule.forRoot(appRoutes),
+        HttpModule
 
     ],
     declarations:
@@ -57,7 +60,6 @@ declare let jQuery: Object;
     providers:
     [
         EventService,
-        EventRouteActivator,
         {
             provide: 'canDeactivateCReateEvent',
             useValue: checkDirtyState
@@ -70,7 +72,8 @@ declare let jQuery: Object;
             provide: JQ_TOKEN, useValue: jQuery
         },
         AuthService,
-        VoterService
+        VoterService,
+        EventResolver
     ],
     bootstrap: [EventsAppComponent]
 })
